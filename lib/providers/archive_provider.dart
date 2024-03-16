@@ -1,8 +1,8 @@
 import 'package:archive/archive.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ArchiveState extends StateNotifier<Archive> {
-  ArchiveState() : super(Archive());
+class ArchiveState extends StateNotifier<Archive?> {
+  ArchiveState() : super(null);
 
   void setArchive(Archive archive) {
     print("Archive Created");

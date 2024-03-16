@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:discord_stats/providers/archive_provider.dart';
-import 'package:discord_stats/providers/conversation_provider.dart';
+import 'package:discord_stats/top_conversations.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:archive/archive.dart';
@@ -33,36 +33,29 @@ class MyHomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    Archive? archive = ref.watch(archiveProvider);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text("Discord Stats"),
       ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () async {
-            FilePickerResult? result = await FilePicker.platform
-                .pickFiles(type: FileType.custom, allowedExtensions: ['zip']);
-            if (result != null) {
-              Uint8List? bytes = result.files.single.bytes;
-              Archive archive = ZipDecoder().decodeBytes(bytes!);
-              ref.read(archiveProvider.notifier).setArchive(archive);
-              ref.read(conversationsProvider);
-              // for (ArchiveFile file in archive) {
-              //   String filename = file.name;
-              //   if (file.isFile) {
-              //     List<int> data = file.content as List<int>;
-              //     print(file.name);
-              //     // Do something with the data
-              //   } else {
-              //     // Handle directories
-              //   }
-              // }
-            }
-          },
-          child: const Text('Open Dropzone'),
-        ),
-      ),
+      body: archive == null
+          ? Center(
+              child: ElevatedButton(
+                onPressed: () async {
+                  FilePickerResult? result = await FilePicker.platform
+                      .pickFiles(
+                          type: FileType.custom, allowedExtensions: ['zip']);
+                  if (result != null) {
+                    Uint8List? bytes = result.files.single.bytes;
+                    Archive archive = ZipDecoder().decodeBytes(bytes!);
+                    ref.read(archiveProvider.notifier).setArchive(archive);
+                  }
+                },
+                child: const Text('Open Dropzone'),
+              ),
+            )
+          : const TopConversations(),
     );
   }
 }

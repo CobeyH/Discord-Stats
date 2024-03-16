@@ -57,7 +57,6 @@ class Conversations extends _$Conversations {
         .where((conversation) => conversation != null)
         .toList()
         .cast<Conversation>();
-    print(conversations.length);
     return conversations;
   }
 }
