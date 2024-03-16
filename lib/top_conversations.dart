@@ -2,6 +2,7 @@ import 'package:discord_stats/providers/conversation_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'detailed_conversation.dart';
 import 'models/conversation.dart';
 
 class TopConversations extends ConsumerStatefulWidget {
@@ -48,6 +49,13 @@ class TopConversationsState extends ConsumerState<TopConversations> {
       ListView.builder(
         itemCount: filteredConversations.length,
         itemBuilder: (context, index) => ListTile(
+          onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => DetailedConversation(
+                  conversation: filteredConversations[index],
+                ),
+              )),
           title: Text("#$index ${filteredConversations[index].name}"),
           subtitle:
               Text(filteredConversations[index].messages.length.toString()),
