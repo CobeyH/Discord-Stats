@@ -7,6 +7,8 @@ import 'package:file_picker/file_picker.dart';
 import 'package:archive/archive.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'day_of_week.dart';
+
 void main() {
   runApp(const ProviderScope(child: MyApp()));
 }
@@ -55,7 +57,7 @@ class MyHomePage extends ConsumerWidget {
                 child: const Text('Open Dropzone'),
               ),
             )
-          : const TopConversations(),
+          : const DayOfWeek(),
     );
   }
 }

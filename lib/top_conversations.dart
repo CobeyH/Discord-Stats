@@ -11,13 +11,12 @@ class TopConversations extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     List<Conversation> conversations = ref.watch(conversationsProvider);
     conversations.sort((a, b) => b.messages.length - a.messages.length);
-    return ListView(
-      children: conversations
-          .map((conversation) => ListTile(
-                title: Text(conversation.name),
-                subtitle: Text(conversation.messages.length.toString()),
-              ))
-          .toList(),
+    return ListView.builder(
+      itemCount: conversations.length,
+      itemBuilder: (context, index) => ListTile(
+        title: Text("#$index ${conversations[index].name}"),
+        subtitle: Text(conversations[index].messages.length.toString()),
+      ),
     );
   }
 }
