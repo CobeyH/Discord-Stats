@@ -5,7 +5,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:archive/archive.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'models.dart';
+import 'models/conversation_user_mapping.dart';
 
 void main() {
   runApp(const MyApp());
@@ -43,7 +43,7 @@ class MyHomePage extends ConsumerWidget {
           onPressed: () async {
             FilePickerResult? result = await FilePicker.platform
                 .pickFiles(type: FileType.custom, allowedExtensions: ['zip']);
-            List<ConversationIdMapping> mappings = [];
+            List<ConversationUserMapping> mappings = [];
             if (result != null) {
               Uint8List? bytes = result.files.single.bytes;
               Archive archive = ZipDecoder().decodeBytes(bytes!);

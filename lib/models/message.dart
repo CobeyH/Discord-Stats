@@ -1,18 +1,3 @@
-class ConversationIdMapping {
-  final String id;
-  final String? name;
-
-  ConversationIdMapping({
-    required this.id,
-    this.name,
-  });
-
-  @override
-  String toString() {
-    return 'ConversationMapping ID: $id, name: $name}';
-  }
-}
-
 class Message {
   final String id;
   final DateTime timestamp;

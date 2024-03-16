@@ -7,7 +7,7 @@ part of 'conversation_mappings_provider.dart';
 // **************************************************************************
 
 String _$fetchConversationMappingsHash() =>
-    r'7a58d51336b54f90373e226e19a1eab779d99ce1';
+    r'3529e1358c9731ef26550708824dfbe5cef959f1';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -36,7 +36,7 @@ const fetchConversationMappingsProvider = FetchConversationMappingsFamily();
 
 /// See also [fetchConversationMappings].
 class FetchConversationMappingsFamily
-    extends Family<List<ConversationIdMapping>> {
+    extends Family<List<ConversationUserMapping>> {
   /// See also [fetchConversationMappings].
   const FetchConversationMappingsFamily();
 
@@ -75,7 +75,7 @@ class FetchConversationMappingsFamily
 
 /// See also [fetchConversationMappings].
 class FetchConversationMappingsProvider
-    extends AutoDisposeProvider<List<ConversationIdMapping>> {
+    extends AutoDisposeProvider<List<ConversationUserMapping>> {
   /// See also [fetchConversationMappings].
   FetchConversationMappingsProvider(
     Archive archive,
@@ -110,7 +110,8 @@ class FetchConversationMappingsProvider
 
   @override
   Override overrideWith(
-    List<ConversationIdMapping> Function(FetchConversationMappingsRef provider)
+    List<ConversationUserMapping> Function(
+            FetchConversationMappingsRef provider)
         create,
   ) {
     return ProviderOverride(
@@ -128,7 +129,7 @@ class FetchConversationMappingsProvider
   }
 
   @override
-  AutoDisposeProviderElement<List<ConversationIdMapping>> createElement() {
+  AutoDisposeProviderElement<List<ConversationUserMapping>> createElement() {
     return _FetchConversationMappingsProviderElement(this);
   }
 
@@ -148,13 +149,13 @@ class FetchConversationMappingsProvider
 }
 
 mixin FetchConversationMappingsRef
-    on AutoDisposeProviderRef<List<ConversationIdMapping>> {
+    on AutoDisposeProviderRef<List<ConversationUserMapping>> {
   /// The parameter `archive` of this provider.
   Archive get archive;
 }
 
 class _FetchConversationMappingsProviderElement
-    extends AutoDisposeProviderElement<List<ConversationIdMapping>>
+    extends AutoDisposeProviderElement<List<ConversationUserMapping>>
     with FetchConversationMappingsRef {
   _FetchConversationMappingsProviderElement(super.provider);
 

@@ -1,13 +1,13 @@
 import 'dart:convert';
 
 import 'package:archive/archive.dart';
-import 'package:discord_stats/models.dart';
+import 'package:discord_stats/models/conversation_user_mapping.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'conversation_mappings_provider.g.dart';
 
 @riverpod
-List<ConversationIdMapping> fetchConversationMappings(
+List<ConversationUserMapping> fetchConversationMappings(
     FetchConversationMappingsRef ref, Archive archive) {
   ArchiveFile? mappingsFile = archive.findFile("messages/index.json");
   if (mappingsFile == null || !mappingsFile.isFile) {
@@ -16,9 +16,9 @@ List<ConversationIdMapping> fetchConversationMappings(
   List<int> data = mappingsFile.content as List<int>;
   String jsonString = String.fromCharCodes(data);
   Map<String, dynamic> jsonMap = jsonDecode(jsonString);
-  List<ConversationIdMapping> mappings = [];
+  List<ConversationUserMapping> mappings = [];
   jsonMap.forEach((key, value) {
-    mappings.add(ConversationIdMapping(id: key, name: value));
+    mappings.add(ConversationUserMapping(id: key, name: value));
   });
   return mappings;
 }
