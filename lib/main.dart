@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dropzone/flutter_dropzone.dart';
 
 void main() {
   runApp(const MyApp());
@@ -63,8 +64,9 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Text("Hello World"),
-      ),
+          child: DropzoneView(
+        onDrop: (value) => print(value),
+      )),
     );
   }
 }
