@@ -20,9 +20,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Discord Stats',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        brightness: Brightness.dark,
+        // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
       home: const MyHomePage(),
@@ -54,7 +55,7 @@ class MyHomePage extends ConsumerWidget {
                     ref.read(archiveProvider.notifier).setArchive(archive);
                   }
                 },
-                child: const Text('Open Dropzone'),
+                child: const Text('Select file'),
               ),
             )
           : const DayOfWeek(),
