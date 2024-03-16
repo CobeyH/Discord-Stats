@@ -1,14 +1,14 @@
 import 'dart:typed_data';
 
+import 'package:discord_stats/providers/archive_provider.dart';
+import 'package:discord_stats/providers/conversation_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:archive/archive.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'models/conversation_user_mapping.dart';
-
 void main() {
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -43,15 +43,16 @@ class MyHomePage extends ConsumerWidget {
           onPressed: () async {
             FilePickerResult? result = await FilePicker.platform
                 .pickFiles(type: FileType.custom, allowedExtensions: ['zip']);
-            List<ConversationUserMapping> mappings = [];
             if (result != null) {
               Uint8List? bytes = result.files.single.bytes;
               Archive archive = ZipDecoder().decodeBytes(bytes!);
-              print(mappings);
+              ref.read(archiveProvider.notifier).setArchive(archive);
+              ref.read(conversationsProvider);
               // for (ArchiveFile file in archive) {
               //   String filename = file.name;
               //   if (file.isFile) {
               //     List<int> data = file.content as List<int>;
+              //     print(file.name);
               //     // Do something with the data
               //   } else {
               //     // Handle directories

@@ -13,7 +13,7 @@ class Message {
 
   factory Message.fromJson(Map<String, dynamic> json) {
     return Message(
-      id: json['ID'],
+      id: json['ID'].toString(),
       timestamp: DateTime.parse(json['Timestamp']),
       contents: json['Contents'],
       attachments: json['Attachments'],
