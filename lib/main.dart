@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:discord_stats/activity_over_time.dart';
 import 'package:discord_stats/providers/archive_provider.dart';
 import 'package:discord_stats/top_conversations.dart';
 import 'package:flutter/material.dart';
@@ -58,7 +59,7 @@ class MyHomePage extends ConsumerWidget {
                 child: const Text('Select file'),
               ),
             )
-          : const DayOfWeek(),
+          : const ActivityOverTime(),
     );
   }
 }
